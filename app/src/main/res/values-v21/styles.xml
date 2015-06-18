@@ -1,0 +1,33 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="AppTheme.Base">
+        <!-- Customize your theme here. -->
+        <item name="android:colorPrimary">@color/primary_color</item>
+        <item name="android:colorPrimaryDark">@color/light_primary_color</item>
+        <item name="android:colorAccent">@color/white</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">@color/primary_color</item>
+    </style>
+
+    <!-- Style the overflow menu -->
+    <style name="PopupTheme" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:background">@color/white</item>
+        <item name="android:drawSelectorOnTop">true</item>
+    </style>
+
+    <!-- Floating Action Button from android design lib-->
+    <style name="FloatingActionButtonBottomRight" parent="Widget.Design.FloatingActionButton">
+        <item name="android:layout_marginRight">@dimen/material_container_margin</item>
+        <item name="android:layout_marginBottom">@dimen/material_container_margin</item>
+        <item name="layout_anchorGravity">bottom|right|end</item>
+        <item name="fabSize">normal</item>
+        <!--Hack to support FAB Shadow on Lollipop -->
+        <item name="borderWidth">0dp</item>
+    </style>
+
+</resources>
