@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/menu_item_movie"
+            android:id="@+id/option"
             android:icon="@mipmap/ic_launcher"
             android:title="OPTION 1"/>
         <item
-            android:id="@+id/menu_item_tv_show"
-            android:icon="@mipmap/ic_launcher"
+            android:id="@+id/settings"
+            android:icon="@drawable/ic_setting_dark"
             android:title="SETTINGS"/>
         <item
             android:id="@+id/menu_item_favorites"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/ic_media_route_disabled_mono_dark"
             android:title="ABOUT"/>
     </group>
 </menu>

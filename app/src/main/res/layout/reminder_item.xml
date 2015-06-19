@@ -10,14 +10,14 @@
     android:layout_marginTop="8dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:elevation="5dp"
-    card_view:cardPreventCornerOverlap="false">
+    card_view:cardPreventCornerOverlap="true">
+
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/root"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/white"
+        android:orientation="horizontal"
+        android:background="@color/md_blue_grey_300"
         android:paddingRight="@dimen/material_container_margin">
 
         <ImageView
@@ -28,24 +28,15 @@
             android:cropToPadding="true"
             android:scaleType="fitXY"
             android:visibility="visible" />
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/list_text"
+            android:text="Remember to..."
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_toRightOf="@id/list_icon"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:padding="@dimen/material_content_spacing">
+            android:visibility="visible" />
 
-            <TextView
-                android:id="@+id/list_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/list_icon"
-                android:visibility="visible" />
-
-
-
-        </LinearLayout>
 
     </RelativeLayout>
 

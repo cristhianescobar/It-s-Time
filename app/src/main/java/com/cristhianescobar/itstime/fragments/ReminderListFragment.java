@@ -1,4 +1,4 @@
-package com.cristhianescobar.itstime;
+package com.cristhianescobar.itstime.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cristhianescobar.itstime.DataUnit;
-import com.cristhianescobar.itstime.DataUnitAdapter;
+import com.cristhianescobar.itstime.data.DataUnit;
+import com.cristhianescobar.itstime.adapters.DataUnitAdapter;
 import com.cristhianescobar.itstime.R;
 
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class ReminderListFragment extends Fragment {
         int [] icons = {R.mipmap.ic_launcher, R.mipmap.ic_launcher};
         String [] names = {"One", "Two", "Three", "Four"};
 
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 1; i++){
             DataUnit d = new DataUnit();
             d.iconId = icons[i%icons.length];
             d.title = names[i%names.length];

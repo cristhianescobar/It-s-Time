@@ -1,4 +1,4 @@
-package com.cristhianescobar.itstime;
+package com.cristhianescobar.itstime.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -10,6 +10,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.cristhianescobar.itstime.adapters.CEPageAdapter;
+import com.cristhianescobar.itstime.R;
+import com.cristhianescobar.itstime.fragments.ReminderListFragment;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
