@@ -36,7 +36,7 @@ public class DataUnitAdapter extends RecyclerView.Adapter<DataUnitAdapter.DataUn
 
     @Override
     public DataUnitViewHolder onCreateViewHolder(ViewGroup parent, int i) {
-        View root = inflator.inflate(R.layout.custom_row, parent , false);
+        View root = inflator.inflate(R.layout.reminder_item, parent , false);
         Log.d("DataUnitAdapter", "On CreateViewHolder called!");
         DataUnitViewHolder dataUnitViewHolder =  new DataUnitViewHolder(root);
 

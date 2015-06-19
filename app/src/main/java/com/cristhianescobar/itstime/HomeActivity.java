@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
     private void initTabs() {
         moviesPagerAdapter = new CEPageAdapter(getSupportFragmentManager());
         moviesPagerAdapter.addPage(new ReminderListFragment(), getResources().getString(R.string.reminder_list));
-        moviesPagerAdapter.addPage(new ReminderListFragment(), getResources().getString(R.string.reminder_list));
+//        moviesPagerAdapter.addPage(new ReminderListFragment(), getResources().getString(R.string.reminder_list));
 
         mViewPager.setAdapter(moviesPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
