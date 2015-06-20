@@ -1,6 +1,11 @@
 package com.cristhianescobar.itstime.activities;
 
+import android.annotation.TargetApi;
+import android.app.ActivityOptions;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -11,12 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.cristhianescobar.itstime.adapters.CEPageAdapter;
+import com.cristhianescobar.itstime.AddReminder;
 import com.cristhianescobar.itstime.R;
+import com.cristhianescobar.itstime.adapters.CEPageAdapter;
 import com.cristhianescobar.itstime.fragments.ReminderListFragment;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -29,6 +36,9 @@ public class HomeActivity extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     private CEPageAdapter moviesPagerAdapter;
 
+    @InjectView(R.id.add_reminder)
+    FloatingActionButton mAddReminder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +48,12 @@ public class HomeActivity extends AppCompatActivity {
         initToolbar();
         initDrawer();
         initTabs();
+    }
+
+    @OnClick(R.id.add_reminder)
+    public void addToList(View view) {
+//        Toast.makeText(this, "What", Toast.LENGTH_SHORT).show();
+        startSearchActivity(findViewById(R.id.add_reminder));
     }
 
     private void initTabs() {
@@ -87,5 +103,27 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @TargetApi(21)
+    private void startSearchActivity(View view) {
+
+        Intent intent = new Intent(HomeActivity.this, AddReminder.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            int[] coordinates = new int[2];
+            view.getLocationInWindow(coordinates);
+
+            int cx = (int) (coordinates[0] + view.getWidth() / 2.0);
+            int cy = (int) (coordinates[1] + view.getHeight() / 2.0);
+
+            intent.putExtra(AddReminder.CENTER_X, cx);
+            intent.putExtra(AddReminder.CENTER_Y, cy);
+
+            startActivity(intent,
+                    ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        } else {
+            startActivity(intent);
+        }
     }
 }
