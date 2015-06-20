@@ -1,4 +1,4 @@
-package com.cristhianescobar.itstime;
+package com.cristhianescobar.itstime.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.cristhianescobar.itstime.data.DataUnit;
+import com.cristhianescobar.itstime.R;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,15 +31,17 @@ public class DataUnitAdapter extends RecyclerView.Adapter<DataUnitAdapter.DataUn
         data = sourceData;
     }
 
-    public void delete(int position){
-        data.remove(position);
-        notifyItemRemoved(position);
-
+    public void addItem(){
+        DataUnit d = new DataUnit();
+        d.iconId = R.mipmap.ic_launcher;
+        d.title = "Reminder";
+        data.add(d);
+        notifyDataSetChanged();
     }
 
     @Override
     public DataUnitViewHolder onCreateViewHolder(ViewGroup parent, int i) {
-        View root = inflator.inflate(R.layout.custom_row, parent , false);
+        View root = inflator.inflate(R.layout.reminder_item, parent , false);
         Log.d("DataUnitAdapter", "On CreateViewHolder called!");
         DataUnitViewHolder dataUnitViewHolder =  new DataUnitViewHolder(root);
 
@@ -74,7 +79,7 @@ public class DataUnitAdapter extends RecyclerView.Adapter<DataUnitAdapter.DataUn
         @Override
         public void onClick(View v) {
 //            Toast.makeText(mContext,"Clicked " + getPosition(), Toast.LENGTH_SHORT).show();
-            delete(getPosition());
+            addItem();
         }
     }
 }

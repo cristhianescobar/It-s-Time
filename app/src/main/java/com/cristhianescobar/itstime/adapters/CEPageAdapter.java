@@ -1,4 +1,4 @@
-package com.cristhianescobar.itstime;
+package com.cristhianescobar.itstime.adapters;
 
 /**
  * Created by cristhian.escobar on 6/16/15.
