@@ -61,6 +61,7 @@ public class ReminderListFragment extends Fragment {
     }
 
     public void addReminder() {
-        adapter.addItem();
+        if(adapter!= null)
+            adapter.addItem();
     }
 }
