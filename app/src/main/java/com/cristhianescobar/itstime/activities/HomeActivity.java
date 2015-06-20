@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.cristhianescobar.itstime.AddReminder;
 import com.cristhianescobar.itstime.R;
 import com.cristhianescobar.itstime.adapters.CEPageAdapter;
 import com.cristhianescobar.itstime.fragments.ReminderListFragment;
@@ -108,7 +107,7 @@ public class HomeActivity extends AppCompatActivity {
     @TargetApi(21)
     private void startSearchActivity(View view) {
 
-        Intent intent = new Intent(HomeActivity.this, AddReminder.class);
+        Intent intent = new Intent(HomeActivity.this, AddReminderActivity.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
             int[] coordinates = new int[2];
@@ -117,8 +116,8 @@ public class HomeActivity extends AppCompatActivity {
             int cx = (int) (coordinates[0] + view.getWidth() / 2.0);
             int cy = (int) (coordinates[1] + view.getHeight() / 2.0);
 
-            intent.putExtra(AddReminder.CENTER_X, cx);
-            intent.putExtra(AddReminder.CENTER_Y, cy);
+            intent.putExtra(AddReminderActivity.CENTER_X, cx);
+            intent.putExtra(AddReminderActivity.CENTER_Y, cy);
 
             startActivity(intent,
                     ActivityOptions.makeSceneTransitionAnimation(this).toBundle());

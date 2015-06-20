@@ -1,4 +1,4 @@
-package com.cristhianescobar.itstime;
+package com.cristhianescobar.itstime.utils;
 
 import android.animation.Animator;
 import android.annotation.TargetApi;

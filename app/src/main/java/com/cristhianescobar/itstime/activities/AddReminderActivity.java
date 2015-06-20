@@ -1,4 +1,4 @@
-package com.cristhianescobar.itstime;
+package com.cristhianescobar.itstime.activities;
 
 import android.app.Activity;
 import android.animation.Animator;
@@ -10,11 +10,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.cristhianescobar.itstime.R;
+import com.cristhianescobar.itstime.utils.RevealTransition;
+
 
 /**
  * Created by cristhian.escobar on 6/20/15.
  */
-public class AddReminder extends Activity {
+public class AddReminderActivity extends Activity {
 
     private Toolbar toolbar;
     private View searchView;
@@ -38,11 +41,11 @@ public class AddReminder extends Activity {
 //        initToolbar();
     }
 
-//    private void initToolbar() {
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        getActionBar().setSupportActionBar(toolbar);
+    private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
-//    }
+    }
 
     @TargetApi(21)
     private void setupRevealTransition() {
