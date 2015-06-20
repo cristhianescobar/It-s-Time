@@ -108,6 +108,14 @@ public class AddReminderActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent returnIntent = new Intent();
+        setResult(3,returnIntent);
+        finish();
+    }
+
     @TargetApi(21)
     private void changeStatusBarColor(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

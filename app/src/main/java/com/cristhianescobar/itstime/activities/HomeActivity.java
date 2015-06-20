@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.cristhianescobar.itstime.R;
 import com.cristhianescobar.itstime.adapters.CEPageAdapter;
@@ -34,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle drawerToggle;
     private CEPageAdapter moviesPagerAdapter;
+    ReminderListFragment listFragment;
 
     @InjectView(R.id.add_reminder)
     FloatingActionButton mAddReminder;
@@ -57,7 +59,9 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initTabs() {
         moviesPagerAdapter = new CEPageAdapter(getSupportFragmentManager());
-        moviesPagerAdapter.addPage(new ReminderListFragment(), getResources().getString(R.string.reminder_list));
+
+        listFragment = new ReminderListFragment();
+        moviesPagerAdapter.addPage(listFragment, getResources().getString(R.string.reminder_list));
 //        moviesPagerAdapter.addPage(new ReminderListFragment(), getResources().getString(R.string.reminder_list));
 
         mViewPager.setAdapter(moviesPagerAdapter);
@@ -119,10 +123,20 @@ public class HomeActivity extends AppCompatActivity {
             intent.putExtra(AddReminderActivity.CENTER_X, cx);
             intent.putExtra(AddReminderActivity.CENTER_Y, cy);
 
-            startActivity(intent,
-                    ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+//            startActivity(intent,
+//                    ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+            startActivityForResult(intent, 3,ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
         } else {
-            startActivity(intent);
+//            startActivity(intent);
+            startActivityForResult(intent, 3);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Toast.makeText(this, "Coming back from detail activity...", Toast.LENGTH_SHORT).show();
+        listFragment.addReminder();
     }
 }
