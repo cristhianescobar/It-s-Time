@@ -33,19 +33,11 @@ public class AddReminderActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
-
-        changeStatusBarColor(getResources().getColor(R.color.accent_color));
-
-
         setupRevealTransition();
-//        initToolbar();
+
     }
 
-    private void initToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
-    }
+
 
     @TargetApi(21)
     private void setupRevealTransition() {
@@ -112,7 +104,7 @@ public class AddReminderActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         Intent returnIntent = new Intent();
-        setResult(3,returnIntent);
+        setResult(HomeActivity.PICKED_TEXT_REMINDER,returnIntent);
         finish();
     }
 

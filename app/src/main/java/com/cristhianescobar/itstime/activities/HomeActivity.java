@@ -5,7 +5,6 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -28,17 +27,19 @@ import butterknife.OnClick;
 
 public class HomeActivity extends AppCompatActivity {
 
-    @InjectView(R.id.toolbar) Toolbar mToolbar;
-    @InjectView(R.id.viewpager) ViewPager mViewPager;
-    @InjectView(R.id.sliding_tabs) TabLayout tabLayout;
-    @InjectView(R.id.drawer_layout) DrawerLayout drawerLayout;
+    public static final int PICKED_TEXT_REMINDER = 3;
+    @InjectView(R.id.toolbar)
+    Toolbar mToolbar;
+    @InjectView(R.id.viewpager)
+    ViewPager mViewPager;
+    @InjectView(R.id.sliding_tabs)
+    TabLayout tabLayout;
+    @InjectView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
 
     private ActionBarDrawerToggle drawerToggle;
     private CEPageAdapter moviesPagerAdapter;
     ReminderListFragment listFragment;
-
-    @InjectView(R.id.add_reminder)
-    FloatingActionButton mAddReminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,14 +123,10 @@ public class HomeActivity extends AppCompatActivity {
 
             intent.putExtra(AddReminderActivity.CENTER_X, cx);
             intent.putExtra(AddReminderActivity.CENTER_Y, cy);
-
-//            startActivity(intent,
-//                    ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-            startActivityForResult(intent, 3,ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+            startActivityForResult(intent, PICKED_TEXT_REMINDER, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
 
         } else {
-//            startActivity(intent);
-            startActivityForResult(intent, 3);
+            startActivityForResult(intent, PICKED_TEXT_REMINDER);
         }
     }
 

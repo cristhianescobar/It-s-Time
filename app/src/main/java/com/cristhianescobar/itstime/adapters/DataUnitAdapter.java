@@ -33,7 +33,7 @@ public class DataUnitAdapter extends RecyclerView.Adapter<DataUnitAdapter.DataUn
 
     public void addItem(){
         DataUnit d = new DataUnit();
-        d.iconId = R.mipmap.ic_launcher;
+        d.iconId = R.drawable.ic_textsms_white24dp;
         d.title = "Reminder";
         data.add(d);
         notifyDataSetChanged();
