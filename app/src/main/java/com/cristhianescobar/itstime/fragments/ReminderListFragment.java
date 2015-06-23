@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.cristhianescobar.itstime.R;
 import com.cristhianescobar.itstime.adapters.DataUnitAdapter;
 import com.cristhianescobar.itstime.data.DataUnit;
+import com.cristhianescobar.itstime.data.Reminder;
 
 import java.util.ArrayList;
 
@@ -43,9 +44,9 @@ public class ReminderListFragment extends Fragment {
         return layout;
     }
 
-    public void addReminder() {
+    public void addReminder(Reminder reminder) {
         if(adapter != null){
-            adapter.addItem();
+            adapter.addItem(reminder);
         }
     }
 }

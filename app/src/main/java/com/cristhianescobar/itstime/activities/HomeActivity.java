@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.cristhianescobar.itstime.R;
 import com.cristhianescobar.itstime.adapters.CEPageAdapter;
+import com.cristhianescobar.itstime.data.Reminder;
 import com.cristhianescobar.itstime.fragments.ReminderListFragment;
 
 import butterknife.ButterKnife;
@@ -130,10 +131,15 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    public static final String MESSAGE_TO_SCHEDULE = "message_schedule";
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Toast.makeText(this, "Coming back from detail activity...", Toast.LENGTH_SHORT).show();
-        listFragment.addReminder();
+        if (resultCode == PICKED_TEXT_REMINDER) {
+            Toast.makeText(this, "Coming back from detail activity...", Toast.LENGTH_SHORT).show();
+
+            listFragment.addReminder((Reminder)data.getSerializableExtra(MESSAGE_TO_SCHEDULE));
+        }
     }
 }

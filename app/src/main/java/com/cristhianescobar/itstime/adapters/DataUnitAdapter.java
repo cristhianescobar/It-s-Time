@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.cristhianescobar.itstime.data.DataUnit;
 import com.cristhianescobar.itstime.R;
+import com.cristhianescobar.itstime.data.DataUnit;
+import com.cristhianescobar.itstime.data.Reminder;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,10 +33,10 @@ public class DataUnitAdapter extends RecyclerView.Adapter<DataUnitAdapter.DataUn
         data = sourceData;
     }
 
-    public void addItem(){
+    public void addItem(Reminder reminder){
         DataUnit d = new DataUnit();
         d.iconId = R.drawable.ic_textsms_white24dp;
-        d.title = "Reminder";
+        d.title = reminder.name;
         data.add(d);
         notifyDataSetChanged();
     }
@@ -78,8 +80,7 @@ public class DataUnitAdapter extends RecyclerView.Adapter<DataUnitAdapter.DataUn
 
         @Override
         public void onClick(View v) {
-//            Toast.makeText(mContext,"Clicked " + getPosition(), Toast.LENGTH_SHORT).show();
-            addItem();
+            Toast.makeText(mContext, "Clicked " + getPosition(), Toast.LENGTH_SHORT).show();
         }
     }
 }

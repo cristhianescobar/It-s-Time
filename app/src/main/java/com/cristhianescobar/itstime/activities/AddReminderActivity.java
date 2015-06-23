@@ -9,9 +9,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 
 import com.cristhianescobar.itstime.R;
+import com.cristhianescobar.itstime.data.Reminder;
 import com.cristhianescobar.itstime.utils.RevealTransition;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 
 
 /**
@@ -26,19 +32,35 @@ public class AddReminderActivity extends Activity {
     public static final String CENTER_X = "CENTER_X";
     public static final String CENTER_Y = "CENTER_Y";
 
+    public static final String MESSAGE_TO_SCHEDULE = "message_schedule";
+
     private int revealAnimationCX;
     private int revealAnimationCY;
+
+    @InjectView(R.id.message_body)
+    EditText mMessage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
+
+        ButterKnife.inject(this);
+
         setupRevealTransition();
 
     }
 
+    @OnClick(R.id.add_new_reminder)
+    public void addNewReminder(View view) {
+        Intent returnIntent = new Intent();
+        Reminder m = new Reminder();
+        m.name = String.valueOf(mMessage.getText());
 
-
+        returnIntent.putExtra(MESSAGE_TO_SCHEDULE, m);
+        setResult(HomeActivity.PICKED_TEXT_REMINDER,returnIntent);
+        finish();
+    }
     @TargetApi(21)
     private void setupRevealTransition() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -98,14 +120,6 @@ public class AddReminderActivity extends Activity {
             revealTransition.setDisappearAnimationListener(disAppearAnimationListener);
             getWindow().setEnterTransition(revealTransition);
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Intent returnIntent = new Intent();
-        setResult(HomeActivity.PICKED_TEXT_REMINDER,returnIntent);
-        finish();
     }
 
     @TargetApi(21)
