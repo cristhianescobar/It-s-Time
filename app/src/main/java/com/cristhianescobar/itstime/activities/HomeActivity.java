@@ -5,7 +5,6 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -15,9 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.cristhianescobar.itstime.R;
 import com.cristhianescobar.itstime.adapters.CEPageAdapter;
+import com.cristhianescobar.itstime.data.Reminder;
 import com.cristhianescobar.itstime.fragments.ReminderListFragment;
 
 import butterknife.ButterKnife;
@@ -27,16 +28,19 @@ import butterknife.OnClick;
 
 public class HomeActivity extends AppCompatActivity {
 
-    @InjectView(R.id.toolbar) Toolbar mToolbar;
-    @InjectView(R.id.viewpager) ViewPager mViewPager;
-    @InjectView(R.id.sliding_tabs) TabLayout tabLayout;
-    @InjectView(R.id.drawer_layout) DrawerLayout drawerLayout;
+    public static final int PICKED_TEXT_REMINDER = 3;
+    @InjectView(R.id.toolbar)
+    Toolbar mToolbar;
+    @InjectView(R.id.viewpager)
+    ViewPager mViewPager;
+    @InjectView(R.id.sliding_tabs)
+    TabLayout tabLayout;
+    @InjectView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
 
     private ActionBarDrawerToggle drawerToggle;
     private CEPageAdapter moviesPagerAdapter;
-
-    @InjectView(R.id.add_reminder)
-    FloatingActionButton mAddReminder;
+    ReminderListFragment listFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +61,9 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initTabs() {
         moviesPagerAdapter = new CEPageAdapter(getSupportFragmentManager());
-        moviesPagerAdapter.addPage(new ReminderListFragment(), getResources().getString(R.string.reminder_list));
+
+        listFragment = new ReminderListFragment();
+        moviesPagerAdapter.addPage(listFragment, getResources().getString(R.string.reminder_list));
 //        moviesPagerAdapter.addPage(new ReminderListFragment(), getResources().getString(R.string.reminder_list));
 
         mViewPager.setAdapter(moviesPagerAdapter);
@@ -118,11 +124,22 @@ public class HomeActivity extends AppCompatActivity {
 
             intent.putExtra(AddReminderActivity.CENTER_X, cx);
             intent.putExtra(AddReminderActivity.CENTER_Y, cy);
+            startActivityForResult(intent, PICKED_TEXT_REMINDER, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
 
-            startActivity(intent,
-                    ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         } else {
-            startActivity(intent);
+            startActivityForResult(intent, PICKED_TEXT_REMINDER);
+        }
+    }
+
+    public static final String MESSAGE_TO_SCHEDULE = "message_schedule";
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == PICKED_TEXT_REMINDER) {
+            Toast.makeText(this, "Coming back from detail activity...", Toast.LENGTH_SHORT).show();
+
+            listFragment.addReminder((Reminder)data.getSerializableExtra(MESSAGE_TO_SCHEDULE));
         }
     }
 }

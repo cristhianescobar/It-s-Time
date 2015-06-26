@@ -8,12 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cristhianescobar.itstime.data.DataUnit;
-import com.cristhianescobar.itstime.adapters.DataUnitAdapter;
 import com.cristhianescobar.itstime.R;
+import com.cristhianescobar.itstime.adapters.DataUnitAdapter;
+import com.cristhianescobar.itstime.data.DataUnit;
+import com.cristhianescobar.itstime.data.Reminder;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class ReminderListFragment extends Fragment {
@@ -37,26 +37,16 @@ public class ReminderListFragment extends Fragment {
         View layout =  inflater.inflate(R.layout.fragment_reminder_list, container, false);
         mRecyclerView = (RecyclerView) layout.findViewById(R.id.recyclerview_list);
 
-        adapter = new DataUnitAdapter(getActivity(), getDataToDisplay());
+        adapter = new DataUnitAdapter(getActivity(), new ArrayList<DataUnit>());
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return layout;
     }
 
-
-    public static List<DataUnit> getDataToDisplay(){
-        List<DataUnit> list = new ArrayList<>();
-        int [] icons = {R.mipmap.ic_launcher, R.mipmap.ic_launcher};
-        String [] names = {"One", "Two", "Three", "Four"};
-
-        for(int i = 0; i < 1; i++){
-            DataUnit d = new DataUnit();
-            d.iconId = icons[i%icons.length];
-            d.title = names[i%names.length];
-            list.add(d);
+    public void addReminder(Reminder reminder) {
+        if(adapter != null){
+            adapter.addItem(reminder);
         }
-
-        return list;
     }
 }
