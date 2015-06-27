@@ -45,14 +45,14 @@ public class AddReminderActivity extends Activity {
     private int revealAnimationCX;
     private int revealAnimationCY;
 
-    @InjectView(R.id.image) ImageView imageView;
     @InjectView(R.id.message_body)
+    EditText mMessage;
 
-    private EditText mMessage;
     private ActivityComponent component;
 
     @Inject Picasso picasso;
 
+    @InjectView(R.id.image) ImageView imageView;
 
 
     @Override
