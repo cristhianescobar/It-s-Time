@@ -1,8 +1,8 @@
 package com.cristhianescobar.itstime.activities;
 
-import android.app.Activity;
 import android.animation.Animator;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Build;
@@ -10,10 +10,18 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
+import com.cristhianescobar.itstime.ActivityComponent;
+import com.cristhianescobar.itstime.ActivityModule;
+import com.cristhianescobar.itstime.DaggerActivityComponent;
 import com.cristhianescobar.itstime.R;
+import com.cristhianescobar.itstime.ReminderApplication;
 import com.cristhianescobar.itstime.data.Reminder;
 import com.cristhianescobar.itstime.utils.RevealTransition;
+import com.squareup.picasso.Picasso;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -37,18 +45,36 @@ public class AddReminderActivity extends Activity {
     private int revealAnimationCX;
     private int revealAnimationCY;
 
+    @InjectView(R.id.image) ImageView imageView;
     @InjectView(R.id.message_body)
-    EditText mMessage;
+
+    private EditText mMessage;
+    private ActivityComponent component;
+
+    @Inject Picasso picasso;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
 
+        component().inject(this);
         ButterKnife.inject(this);
 
         setupRevealTransition();
 
+    }
+
+    public ActivityComponent component() {
+        if(component == null) {
+            // IMPORTANT:: Build
+            component = DaggerActivityComponent.builder()
+                    .appComponent(((ReminderApplication) getApplication()).component())
+                    .activityModule(new ActivityModule(this)).build();
+        }
+        return component;
     }
 
     @OnClick(R.id.add_new_reminder)
@@ -61,6 +87,13 @@ public class AddReminderActivity extends Activity {
         setResult(HomeActivity.PICKED_TEXT_REMINDER,returnIntent);
         finish();
     }
+
+    @OnClick(R.id.button)
+    public void imageLoad(){
+        picasso.load("http://www.hdwallpapersimages.com/wp-content/uploads/2014/01/Winter-Tiger-Wild-Cat-Images.jpg")
+                .into(imageView);
+    }
+
     @TargetApi(21)
     private void setupRevealTransition() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
