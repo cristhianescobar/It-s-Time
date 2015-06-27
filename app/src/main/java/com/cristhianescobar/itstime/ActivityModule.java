@@ -2,6 +2,8 @@ package com.cristhianescobar.itstime;
 
 import android.app.Activity;
 
+import com.squareup.picasso.Picasso;
+
 import dagger.Module;
 
 /**
@@ -15,5 +17,9 @@ public class ActivityModule {
 
     public ActivityModule(Activity activity) {
         this.activity = activity;
+    }
+
+    public Picasso getPicasso(AppComponent appComponent) {
+        return appComponent.providePicasso();
     }
 }

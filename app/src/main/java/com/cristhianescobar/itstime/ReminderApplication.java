@@ -7,21 +7,21 @@ import android.app.Application;
  */
 public class ReminderApplication extends Application {
 
-    AppComponent appComponent;
+    AppComponent component;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
         //Connection between AppComponent and DaggerApplication
         component().inject(this);
     }
 
-    public AppComponent component(){
-        if(appComponent == null){
+    public AppComponent component() {
+        if(component == null) {
             // IMPORTANT:: Build
-            appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+            component = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
         }
-        return appComponent;
+        return component;
     }
+
 }

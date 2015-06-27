@@ -1,5 +1,7 @@
 package com.cristhianescobar.itstime;
 
+import com.squareup.picasso.Picasso;
+
 import javax.inject.Singleton;
 
 import dagger.Component;
@@ -12,4 +14,5 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(ReminderApplication application);
+    Picasso providePicasso();
 }

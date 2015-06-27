@@ -1,5 +1,6 @@
 package com.cristhianescobar.itstime;
 
+import com.cristhianescobar.itstime.activities.AddReminderActivity;
 import com.cristhianescobar.itstime.activities.HomeActivity;
 
 import dagger.Component;
@@ -12,5 +13,8 @@ import dagger.Component;
         modules = ActivityModule.class)
 public interface ActivityComponent {
     void inject(HomeActivity mainActivity);
+    void inject(AddReminderActivity addReminderActivity);
+
+
 
 }

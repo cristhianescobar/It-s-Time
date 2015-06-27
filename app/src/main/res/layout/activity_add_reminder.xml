@@ -12,6 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="This message will be schedule periodically"/>
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="fill_parent"
+        android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"
+        android:layout_height="fill_parent" />
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/hello_world" />
 
     <Button
         android:id="@+id/add_new_reminder"
