@@ -23,8 +23,8 @@ import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 
 
@@ -45,14 +45,14 @@ public class AddReminderActivity extends Activity {
     private int revealAnimationCX;
     private int revealAnimationCY;
 
-    @InjectView(R.id.message_body)
+    @Bind(R.id.message_body)
     EditText mMessage;
 
     private ActivityComponent component;
 
     @Inject Picasso picasso;
 
-    @InjectView(R.id.image) ImageView imageView;
+    @Bind(R.id.image) ImageView imageView;
 
 
     @Override
@@ -61,7 +61,7 @@ public class AddReminderActivity extends Activity {
         setContentView(R.layout.activity_add_reminder);
 
         component().inject(this);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         setupRevealTransition();
 

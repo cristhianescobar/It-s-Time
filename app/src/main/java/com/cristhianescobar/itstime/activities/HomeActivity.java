@@ -21,21 +21,21 @@ import com.cristhianescobar.itstime.adapters.CEPageAdapter;
 import com.cristhianescobar.itstime.data.Reminder;
 import com.cristhianescobar.itstime.fragments.ReminderListFragment;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 
 
 public class HomeActivity extends AppCompatActivity {
 
     public static final int PICKED_TEXT_REMINDER = 3;
-    @InjectView(R.id.toolbar)
+    @Bind(R.id.toolbar)
     Toolbar mToolbar;
-    @InjectView(R.id.viewpager)
+    @Bind(R.id.viewpager)
     ViewPager mViewPager;
-    @InjectView(R.id.sliding_tabs)
+    @Bind(R.id.sliding_tabs)
     TabLayout tabLayout;
-    @InjectView(R.id.drawer_layout)
+    @Bind(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
     private ActionBarDrawerToggle drawerToggle;
@@ -46,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         initToolbar();
         initDrawer();
